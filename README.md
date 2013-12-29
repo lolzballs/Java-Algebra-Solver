@@ -1,4 +1,4 @@
-Java-Algebra-Solver
+Java Algebra Solver
 ===================
 
-A Java solver that solves system of linear equations.
+This is a program/library used to simplify and solve system of linear equations using expression evaluator and matrix. 
