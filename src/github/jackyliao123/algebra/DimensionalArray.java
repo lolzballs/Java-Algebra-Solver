@@ -3,8 +3,8 @@ package github.jackyliao123.algebra;
 public class DimensionalArray {
 
     private Rational[] values;
-    private int dimensions;
-    private int sizePerDimension;
+    private final int dimensions;
+    private final int sizePerDimension;
 
     public DimensionalArray(int dimensions, int sizePerDimension) {
         values = new Rational[pow(sizePerDimension, dimensions)];
@@ -34,6 +34,10 @@ public class DimensionalArray {
 
     public int getDimensions() {
         return dimensions;
+    }
+
+    public int getSizePerDimension() {
+        return sizePerDimension;
     }
 
     public Rational getValue(int[] position) {
