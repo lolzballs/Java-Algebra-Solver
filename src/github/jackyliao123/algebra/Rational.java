@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 public class Rational implements Serializable {
-    private static final long serialVersionUID = 2923550628179745796L;
+
     private BigInteger numerator;
     private BigInteger denominator;
 
