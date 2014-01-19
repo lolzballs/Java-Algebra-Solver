@@ -3,21 +3,20 @@ package github.jackyliao123.algebra;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Num implements Serializable {
+public class Coefficient implements Serializable {
 
-    private static final long serialVersionUID = 3495248830884808813L;
     char unknownChars[];
     Rational number;
     Rational[] unknown;
 
-    public Num(Rational num, Rational[] unknown, char[] chars) {
+    public Coefficient(Rational num, Rational[] unknown, char[] chars) {
         unknownChars = chars;
         this.unknown = new Rational[unknownChars.length];
         this.number = num;
         this.unknown = unknown;
     }
 
-    public Num(Rational num, char[] chars) {
+    public Coefficient(Rational num, char[] chars) {
         unknownChars = chars;
         unknown = new Rational[unknownChars.length];
         number = num;
@@ -26,7 +25,7 @@ public class Num implements Serializable {
         }
     }
 
-    public Num(Rational num, Rational unk, char unkchar, char[] chars) {
+    public Coefficient(Rational num, Rational unk, char unkchar, char[] chars) {
         unknownChars = chars;
         unknown = new Rational[unknownChars.length];
         number = num;
@@ -38,7 +37,7 @@ public class Num implements Serializable {
         }
     }
 
-    public Num(Rational unk, char unkchar, char[] chars) {
+    public Coefficient(Rational unk, char unkchar, char[] chars) {
         unknownChars = chars;
         unknown = new Rational[unknownChars.length];
         number = new Rational(new BigInteger("0"), new BigInteger("1"));
@@ -50,49 +49,49 @@ public class Num implements Serializable {
         }
     }
 
-    public Num add(Num num) {
+    public Coefficient add(Coefficient coefficient) {
         Rational[] unk = new Rational[unknown.length];
         for (int i = 0; i < unknown.length; i++) {
-            unk[i] = unknown[i].add(num.unknown[i]);
+            unk[i] = unknown[i].add(coefficient.unknown[i]);
         }
-        return new Num(number.add(num.number), unk, unknownChars);
+        return new Coefficient(number.add(coefficient.number), unk, unknownChars);
     }
 
-    public Num subtract(Num num) {
+    public Coefficient subtract(Coefficient coefficient) {
         Rational[] unk = new Rational[unknown.length];
         for (int i = 0; i < unknown.length; i++) {
-            unk[i] = unknown[i].subtract(num.unknown[i]);
+            unk[i] = unknown[i].subtract(coefficient.unknown[i]);
         }
-        return new Num(number.subtract(num.number), unk, unknownChars);
+        return new Coefficient(number.subtract(coefficient.number), unk, unknownChars);
     }
 
-    public Num multiply(Num num) {
-        if (num.isPureNumber()) {
+    public Coefficient multiply(Coefficient coefficient) {
+        if (coefficient.isPureNumber()) {
             Rational[] unk = new Rational[unknown.length];
             for (int i = 0; i < unknown.length; i++) {
-                unk[i] = unknown[i].multiply(num.number);
+                unk[i] = unknown[i].multiply(coefficient.number);
             }
-            return new Num(number.multiply(num.number), unk, unknownChars);
+            return new Coefficient(number.multiply(coefficient.number), unk, unknownChars);
         } else if (isPureNumber()) {
             Rational[] unk = new Rational[unknown.length];
             for (int i = 0; i < unknown.length; i++) {
-                unk[i] = num.unknown[i].multiply(number);
+                unk[i] = coefficient.unknown[i].multiply(number);
             }
-            return new Num(num.number.multiply(number), unk, unknownChars);
+            return new Coefficient(coefficient.number.multiply(number), unk, unknownChars);
         } else {
             throw new ArithmeticException("Not a valid linear equation");
         }
     }
 
-    public Num divide(Num num) {
-        if (!num.isPureNumber()) {
+    public Coefficient divide(Coefficient coefficient) {
+        if (!coefficient.isPureNumber()) {
             throw new ArithmeticException("Not a valid linear equation");
         }
         Rational[] unk = new Rational[unknown.length];
         for (int i = 0; i < unknown.length; i++) {
-            unk[i] = unknown[i].divide(num.number);
+            unk[i] = unknown[i].divide(coefficient.number);
         }
-        return new Num(number.divide(num.number), unk, unknownChars);
+        return new Coefficient(number.divide(coefficient.number), unk, unknownChars);
     }
 
     public boolean isPureNumber() {

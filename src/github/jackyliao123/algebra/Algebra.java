@@ -11,13 +11,13 @@ public class Algebra{
 				try{
 					String[] equations = lines[i].split("=");
 					Evaluate e = new Evaluate(equations[0], unknownc);
-					Num num1 = e.evaluateExpression();
+					Coefficient coefficient1 = e.evaluateExpression();
 					e = new Evaluate(equations[1], unknownc);
-					Num num2 = e.evaluateExpression();
+					Coefficient coefficient2 = e.evaluateExpression();
 					for(int j = 0; j < unknowns; j ++){
-						matrix[i][j] = num1.unknown[j].subtract(num2.unknown[j]);
+						matrix[i][j] = coefficient1.unknown[j].subtract(coefficient2.unknown[j]);
 					}
-					matrix[i][unknowns] = num2.number.subtract(num1.number);
+					matrix[i][unknowns] = coefficient2.number.subtract(coefficient1.number);
 				}
 				catch(RuntimeException e){
 					throw new ParserException(e, i);

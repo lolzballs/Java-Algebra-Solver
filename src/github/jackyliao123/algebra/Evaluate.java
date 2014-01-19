@@ -8,14 +8,14 @@ import java.util.StringTokenizer;
 public class Evaluate implements Serializable {
 
     private String expression;
-    private Stack<Num> operandStack;
+    private Stack<Coefficient> operandStack;
     private Stack<Character> operatorStack;
     private StringTokenizer tokens;
     private char[] unknownChars;
 
     public Evaluate(String expression, char[] unknownChars) {
         this.expression = expression;
-        operandStack = new Stack<Num>();
+        operandStack = new Stack<Coefficient>();
         operatorStack = new Stack<Character>();
         this.unknownChars = unknownChars;
     }
@@ -33,7 +33,7 @@ public class Evaluate implements Serializable {
         return '0' <= c && '9' >= c;
     }
 
-    public Num evaluateExpression() {
+    public Coefficient evaluateExpression() {
         expression = expression.replace(" ", "");
         expression = expression.replace(")(", ")*(");
         expression = expression.replace("(+", "(");
@@ -101,12 +101,12 @@ public class Evaluate implements Serializable {
             } else {
                 if ('0' <= token.charAt(0) && '9' >= token.charAt(0)) {
                     if (token.contains(".")) {
-                        operandStack.push(new Num(toRational(token), unknownChars));
+                        operandStack.push(new Coefficient(toRational(token), unknownChars));
                     } else {
-                        operandStack.push(new Num(new Rational(new BigInteger(token), new BigInteger("1")), unknownChars));
+                        operandStack.push(new Coefficient(new Rational(new BigInteger(token), new BigInteger("1")), unknownChars));
                     }
                 } else {
-                    operandStack.push(new Num(new Rational(new BigInteger("1"), new BigInteger("1")), token.charAt(0), unknownChars));
+                    operandStack.push(new Coefficient(new Rational(new BigInteger("1"), new BigInteger("1")), token.charAt(0), unknownChars));
                 }
             }
         }
@@ -118,8 +118,8 @@ public class Evaluate implements Serializable {
 
     public void processAnOperator() {
         char op = operatorStack.pop();
-        Num op1 = operandStack.pop();
-        Num op2 = operandStack.pop();
+        Coefficient op1 = operandStack.pop();
+        Coefficient op2 = operandStack.pop();
         if (op == '+') {
             operandStack.push(op2.add(op1));
         } else if (op == '-') {
