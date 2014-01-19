@@ -1,7 +1,5 @@
 package github.jackyliao123.algebra;
 
-import java.math.BigInteger;
-
 public class DimensionalArray {
 
     private Rational[] values;
@@ -24,13 +22,14 @@ public class DimensionalArray {
             }
         }
         int pos = 0;
-        System.out.println("------------set--------------");
         for (int i = 0; i < position.length; i++) {
             pos += position[i] * pow(sizePerDimension, dimensions - 1 - i);
-            System.out.println("i: " + i + "     position[i]: " + position[i] + "     pos: " + pos);
-            System.out.println("Size: " + sizePerDimension + "     Dimension: " + dimensions);
         }
         values[pos] = value;
+    }
+
+    public void setValue(int postition, Rational value) {
+        values[postition] = value;
     }
 
     public int getDimensions() {
@@ -47,13 +46,14 @@ public class DimensionalArray {
             }
         }
         int pos = 0;
-        System.out.println("------------get--------------");
         for (int i = 0; i < position.length; i++) {
             pos += position[i] * pow(sizePerDimension, dimensions - 1 - i);
-            System.out.println("i: " + i + "     position[i]: " + position[i] + "     pos: " + pos);
-            System.out.println("Size: " + sizePerDimension + "     Dimension: " + dimensions);
         }
         return values[pos];
+    }
+
+    public Rational getValue(int postition) {
+        return values[postition];
     }
 
     private static int pow(int x, int y) {
@@ -61,20 +61,7 @@ public class DimensionalArray {
         for (int i = 0; i < y; i++) {
             value *= x;
         }
-        System.out.println(x + "^" + y + "=" + value);
         return value;
-    }
-
-    public static void main(String[] args) {
-        DimensionalArray array = new DimensionalArray(2, 2);
-        array.setValue(new int[]{0, 0}, new Rational(new BigInteger("8"), (new BigInteger("1"))));
-        array.setValue(new int[]{1, 0}, new Rational(new BigInteger("5"), (new BigInteger("1"))));
-        array.setValue(new int[]{1, 1}, new Rational(new BigInteger("5"), (new BigInteger("4"))));
-        array.setValue(new int[]{0, 1}, new Rational(new BigInteger("6"), (new BigInteger("1"))));
-        System.out.println(array.getValue(new int[]{0, 0}));
-        System.out.println(array.getValue(new int[]{1, 0}));
-        System.out.println(array.getValue(new int[]{1, 1}));
-        System.out.println(array.getValue(new int[]{0, 1}));
     }
 
 }
