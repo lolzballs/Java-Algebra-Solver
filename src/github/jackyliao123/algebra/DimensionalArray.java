@@ -23,8 +23,8 @@ public class DimensionalArray{
         int pos = 0;
         System.out.println("------------set--------------");
         for(int i = 0; i < position.length; i ++){
-            pos += position[i] * pow(sizePerDimension, dimensions);
-            System.out.println("i: " + i + "     pos: " + pos);
+            pos += position[i] * pow(sizePerDimension, dimensions - 1 - i);
+            System.out.println("i: " + i + "     position[i]: " + position[i] + "     pos: " + pos);
             System.out.println("Size: " + sizePerDimension + "     Dimension: " + dimensions);
         }
         values[pos] = value;
@@ -44,8 +44,8 @@ public class DimensionalArray{
         int pos = 0;
         System.out.println("------------get--------------");
         for(int i = 0; i < position.length; i ++){
-            pos += position[i] * pow(sizePerDimension, dimensions);
-            System.out.println("i: " + i + "     pos: " + pos);
+            pos += position[i] * pow(sizePerDimension, dimensions - 1 - i);
+            System.out.println("i: " + i + "     position[i]: " + position[i] + "     pos: " + pos);
             System.out.println("Size: " + sizePerDimension + "     Dimension: " + dimensions);
         }
         return values[pos];
