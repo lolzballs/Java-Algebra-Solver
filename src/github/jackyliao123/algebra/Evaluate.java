@@ -73,8 +73,8 @@ public class Evaluate implements Serializable {
         tokens = new StringTokenizer(expression, "()+-/*", true);
         while (tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
-            if (token.length() == 0)
-                continue;
+            if (token.length() == 0) {
+            }
             else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
                 while (!operatorStack.isEmpty() &&
                         (operatorStack.peek() == '+' ||
