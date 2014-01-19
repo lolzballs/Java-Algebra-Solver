@@ -51,14 +51,11 @@ public class DimensionalArray{
         return values[pos];
     }
     private static int pow(int x, int y){
-        int value = x;
-        if(y == 0){
-            return 1;
-        }
+        int value = 1;
         for(int i = 0; i < y; i ++){
-            value *= y;
+            value *= x;
         }
-
+        System.out.println(x+"^"+y+"="+value);
         return value;
     }
     public static void main(String[] args){
