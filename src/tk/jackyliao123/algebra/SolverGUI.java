@@ -1,4 +1,4 @@
-package github.jackyliao123.algebra;
+package tk.jackyliao123.algebra;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

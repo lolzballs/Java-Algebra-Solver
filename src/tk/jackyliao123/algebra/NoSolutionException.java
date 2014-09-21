@@ -1,4 +1,4 @@
-package github.jackyliao123.algebra;
+package tk.jackyliao123.algebra;
 
 public class NoSolutionException extends ArithmeticException {
 
