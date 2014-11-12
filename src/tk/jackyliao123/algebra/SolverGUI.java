@@ -12,7 +12,7 @@ public class SolverGUI {
     private SolverGUI() {
     }
 
-    private static char[] unks = "xyzabcdefghijklmnopqrstuvwXYZABCDEFGHIJKLMNOPQRSTUVW".toCharArray();
+    private static char[] unks = "xyzabcdefghijklmnopqrstuvwXYZABCDEFGHIJKLMNOPQRSTUVWαβγδεζηθικλμ".toCharArray();
 
     public static void main(String[] args) {
         try {
@@ -47,7 +47,7 @@ public class SolverGUI {
 
         final JSpinner spinner = new JSpinner();
         unknown.add(spinner, BorderLayout.EAST);
-        spinner.setModel(new SpinnerNumberModel(1, 1, 52, 1));
+        spinner.setModel(new SpinnerNumberModel(1, 1, 64, 1));
 
         unk.add(unknownChars, BorderLayout.CENTER);
         unknownChars.setToolTipText("Characters for unknown separated by ','");
